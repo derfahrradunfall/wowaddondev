@@ -1,0 +1,8 @@
+## Interface: 30300
+## Title: AutoJunkDelete_vDnD
+## Notes: Automatically deletes grey junk items from bags.
+## Version: 1.1
+## SavedVariables: AutoJunkDeleteDB_vDnD
+
+locales.lua
+AutoJunkDelete_vDnD.lua
