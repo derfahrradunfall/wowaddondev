@@ -106,18 +106,29 @@ local function SellJunkToMerchant()
             local link = GetContainerItemLink(bag, slot)
             if link then
                 local id = tonumber(link:match("item:(%d+)"))
-                local name, _, quality, _, _, _, _, _, _, _, sellPrice = GetItemInfo(link)
-                local _, count, locked = GetContainerItemInfo(bag, slot)
 
-                if id and not name then
-                    GetItemInfo(id)
-                -- Whitelist-Check bewusst als ERSTE Bedingung, damit sie bei
-                -- "and"-Kurzschlussauswertung immer zuerst greift (Priorität!)
-                elseif id and not IsWhitelisted(id) and not locked and IsItemDeletableOrSellable(id, quality, link) then
-                    if sellPrice and sellPrice > 0 then
-                        UseContainerItem(bag, slot)
-                        soldCount = soldCount + 1
-                        earnedGold = earnedGold + (sellPrice * (count or 1))
+                -- GEHÄRTET: Whitelist-Check läuft jetzt als ALLERERSTES,
+                -- bevor überhaupt GetItemInfo/GetContainerItemInfo für den
+                -- Slot ausgewertet wird. Ein gewhitelistetes Item wird so
+                -- schon hier komplett aus der weiteren Verarbeitung
+                -- ausgeschlossen und kann durch keine nachfolgende Logik
+                -- (Quality-Check, Blacklist, Caching-Timing, etc.) mehr
+                -- versehentlich verkauft werden – unabhängig davon, ob es
+                -- Grau, Weiß oder sonst eine Qualität hat.
+                if id and IsWhitelisted(id) then
+                    -- geschützt, nichts tun
+                else
+                    local name, _, quality, _, _, _, _, _, _, _, sellPrice = GetItemInfo(link)
+                    local _, count, locked = GetContainerItemInfo(bag, slot)
+
+                    if id and not name then
+                        GetItemInfo(id)
+                    elseif id and not locked and IsItemDeletableOrSellable(id, quality, link) then
+                        if sellPrice and sellPrice > 0 then
+                            UseContainerItem(bag, slot)
+                            soldCount = soldCount + 1
+                            earnedGold = earnedGold + (sellPrice * (count or 1))
+                        end
                     end
                 end
             end
@@ -150,14 +161,19 @@ local function ProcessSpaceProtection(isManualClick)
                 local link = GetContainerItemLink(bag, slot)
                 if link then
                     local id = tonumber(link:match("item:(%d+)"))
-                    if id then
+
+                    -- GEHÄRTET: siehe Kommentar in SellJunkToMerchant weiter
+                    -- oben – Whitelist-Check zuerst, vor jeglicher weiterer
+                    -- Auswertung des Slots.
+                    if id and IsWhitelisted(id) then
+                        -- geschützt, nichts tun
+                    else
                         local name, _, quality, _, _, _, _, _, _, _, sellPrice = GetItemInfo(link)
                         local _, count, locked = GetContainerItemInfo(bag, slot)
 
                         if id and not name then
                             GetItemInfo(id)
-                        -- Whitelist-Check bewusst als ERSTE Bedingung (Priorität, siehe oben)
-                        elseif not IsWhitelisted(id) and not locked and count and count > 0 and IsItemDeletableOrSellable(id, quality, link) then
+                        elseif id and not locked and count and count > 0 and IsItemDeletableOrSellable(id, quality, link) then
                             local itemPrice = sellPrice or 0
 
                             table.insert(deletableItems, {
