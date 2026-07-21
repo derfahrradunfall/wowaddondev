@@ -1,5 +1,5 @@
 ## Interface: 30300
-## Title: _|cffCCCC88NPCScan|r
+## Title: _|cffCCCC88NPCScan|r_vDnD
 ## Notes: Scans NPCs around you for rare ones.
 ## Notes-frFR: Analyse les PNJs autour de vous à la recherche de ceux qui sont rares.
 ## Notes-koKR: 근처에 있는 희귀몹을 탐색합니다.
@@ -22,8 +22,7 @@
 ## X-Localizations: enUS, frFR, koKR, ruRU, zhTW
 ## X-CompatibleLocales: deDE, enUS, esES, esMX, frFR, koKR, ruRU, zhCN, zhTW
 ## X-Embeds: LibTextTable-1.0, LibSharedMedia-3.0
-## SavedVariables: _NPCScanOptions
-## SavedVariablesPerCharacter: _NPCScanOptionsCharacter
+## SavedVariables: _NPCScanOptions_vDnD
 ## OptionalDeps: Ace3, LibTextTable-1.0, LibSharedMedia-3.0, LibRareSpawns
 Libs\LibStub\LibStub.lua
 Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml

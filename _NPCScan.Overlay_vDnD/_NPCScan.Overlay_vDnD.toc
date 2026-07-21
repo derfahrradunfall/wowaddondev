@@ -1,5 +1,5 @@
 ## Interface: 30300
-## Title: _|cffCCCC88NPCScan|r.Overlay
+## Title: _|cffCCCC88NPCScan|r.Overlay_vDnD
 ## Notes: Adds mob patrol paths to your map.
 ## Author: Saiket
 ## X-Credits: s8095324 (zhTW)
@@ -13,8 +13,8 @@
 ## X-WoWI-ID: 14686
 ## X-Curse-Project-ID: npcscan-overlay
 ## X-Localizations: enUS, zhTW
-## SavedVariables: _NPCScanOverlayOptions
-## OptionalDeps: Ace3, _NPCScan, AlphaMap3, Carbonite, Mapster
+## SavedVariables: _NPCScanOverlayOptions_vDnD
+## OptionalDeps: Ace3, _NPCScan_vDnD, AlphaMap3, Carbonite, Mapster
 Libs\LibStub\LibStub.lua
 Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
 
