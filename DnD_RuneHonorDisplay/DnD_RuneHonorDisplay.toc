@@ -1,0 +1,8 @@
+## Interface: 30300
+## Title: DnD_RuneHonorDisplay
+## Notes: Zeigt die aktuelle Anzahl von "Rune of Ascension" und Honor Points mit Icon an. Fenster ist per Drag and Drop verschiebbar und unten rechts per Klick und Ziehen skalierbar.
+## Author: DnD
+## Version: 1.0
+## SavedVariables: DnD_RuneHonorDisplayDB
+
+DnD_RuneHonorDisplay.lua
