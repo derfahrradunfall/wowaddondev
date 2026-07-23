@@ -1,0 +1,12 @@
+## Interface: 30300
+## Title: AllStats_vDnD
+## Notes: Shows all of the stats from the dropdowns next to the paperdoll window.
+## Version: 1.3
+## Author: Ganoran
+## Credits: Lekyaira
+## Email: ganoran@gmail.com
+## License: GPLv3
+## SavedVariables:
+## Dependencies: AscensionUI
+
+AllStats.xml
